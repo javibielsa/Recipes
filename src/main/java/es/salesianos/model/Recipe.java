@@ -6,6 +6,8 @@ import java.util.List;
 public class Recipe {
 
 	private String name;
+	private String ingredientName;
+	private String cookingToolName;
 
 	private List<Ingredient> ingredients;
 
@@ -38,6 +40,22 @@ public class Recipe {
 
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public String getIngredientName() {
+		return ingredientName;
+	}
+
+	public void setIngredientName(String ingredientName) {
+		this.ingredientName = ingredientName;
+	}
+
+	public String getCookingToolName() {
+		return cookingToolName;
+	}
+
+	public void setCookingToolName(String cookingToolName) {
+		this.cookingToolName = cookingToolName;
 	}
 
 }

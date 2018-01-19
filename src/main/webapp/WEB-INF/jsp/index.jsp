@@ -27,7 +27,7 @@
 
 	<form:form action="ingredientInsert" method="post">
 		<span>nuevo ingrediente:</span>
-		<form:input type="text" path="recipe." />
+		<form:input type="text" path="ingredientName" />
 		<input type="submit" value="guardar ingrediente"/>
 	</form:form>
 	<table border="1">
@@ -48,13 +48,13 @@
 	<br />
 	<br />
 	<br />
-	<br /> <
+	<br /> 
 
 
 
 	<form:form action="cookingToolInsert" method="post">
 		<span>nuevo utensilio:</span>
-		<form:input type="text" path="recipe." />
+		<form:input type="text" path="cookingToolName" />
 		<input type="submit" value="guardar herramienta" />
 	</form:form>
 	<table border="1">
