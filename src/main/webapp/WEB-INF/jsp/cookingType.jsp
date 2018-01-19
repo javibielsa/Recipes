@@ -12,7 +12,7 @@
 </head>
 <body>
 
-	<form:form action="cookingType/insert" method="post">
+	<form:form action="cookingTypeInsert" method="post">
 		<span>tipo de cocina:</span>
 		<form:input type="text" path="name" />
 		<input type="submit"/>
