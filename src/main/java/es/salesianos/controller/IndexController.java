@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import es.salesianos.model.CookingTool;
+import es.salesianos.model.Ingredient;
 import es.salesianos.model.Recipe;
 
 
@@ -17,7 +19,8 @@ public class IndexController {
 
 	@GetMapping("/")
 	public ModelAndView index() {
-		return new ModelAndView("index", "command", new Recipe());
+		Recipe recipe = new Recipe();
+		return new ModelAndView("index", "command", recipe);
 	}
 
 	@PostMapping("recipeInsert")
@@ -29,12 +32,24 @@ public class IndexController {
 	@PostMapping("ingredientInsert")
 	public ModelAndView ingredientInsert(Recipe recipe) {
 		log.debug("ingredientInsert");
+
+		Ingredient ingredient = new Ingredient();
+		ingredient.setName(recipe.getIngredientName());
+
+		recipe.getIngredients().add(ingredient);
+
 		return new ModelAndView("index", "command", recipe);
 	}
 
 	@PostMapping("cookingToolInsert")
 	public ModelAndView cookingToolInsert(Recipe recipe) {
 		log.debug("cookingToolInsert");
+
+		CookingTool cookingTool = new CookingTool();
+		cookingTool.setName(recipe.getCookingToolName());
+
+		recipe.getTools().add(cookingTool);
+
 		return new ModelAndView("index", "command", recipe);
 	}
 
