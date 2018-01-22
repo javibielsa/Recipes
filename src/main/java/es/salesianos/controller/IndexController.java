@@ -25,14 +25,27 @@ public class IndexController {
 	
 	@GetMapping("/")
 	public ModelAndView index() {
+		cookingTools.clear();
+		ingredients.clear();
 		Recipe recipe = new Recipe();
-		return new ModelAndView("index", "command", recipe);
+		ModelAndView modelAndView = new ModelAndView("index", "command", recipe);
+		modelAndView.addObject("recipe", recipe);
+		return modelAndView;
 	}
 
 	@PostMapping("recipeInsert")
 	public ModelAndView recipeInsert(Recipe recipe) {
 		log.debug("recipeInsert:" + recipe.toString());
-		return new ModelAndView("index", "command", recipe);
+		ModelAndView modelAndView = new ModelAndView("index", "command", recipe);
+		addPageData(recipe, modelAndView);
+		return modelAndView;
+	}
+
+	private void addPageData(Recipe recipe, ModelAndView modelAndView) {
+		modelAndView.addObject("recipe", recipe);
+		modelAndView.addObject("name", recipe.getName());
+		modelAndView.addObject("ingredients", getIngredients());
+		modelAndView.addObject("cookingTools", getCookingTools());
 	}
 
 	@PostMapping("ingredientInsert")
@@ -44,7 +57,7 @@ public class IndexController {
 		getIngredients().add(ingredient);
 
 		ModelAndView modelAndView = new ModelAndView("index", "command", recipe);
-		modelAndView.addObject("ingredients", getIngredients());
+		addPageData(recipe, modelAndView);
 		return modelAndView;
 	}
 
@@ -57,7 +70,7 @@ public class IndexController {
 		getCookingTools().add(cookingTool);
 
 		ModelAndView modelAndView = new ModelAndView("index", "command", recipe);
-		modelAndView.addObject("cookingTools", getCookingTools());
+		addPageData(recipe, modelAndView);
 		return modelAndView;
 	}
 
