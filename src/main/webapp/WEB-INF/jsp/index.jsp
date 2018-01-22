@@ -20,6 +20,7 @@
 	</form:form>
 	<br />
 	<br />
+	El nombre de la receta es <span><c:out value="${recipe.name}" /></span>
 	<br />
 	<br />
 	<br />
@@ -39,7 +40,7 @@
 		<tbody>
 			<c:forEach var="ingredient" items="${ingredients}">
 				<tr>
-					<td><c:out value="${ingredient.nombre}" /></td>
+					<td><c:out value="${ingredient.name}" /></td>
 				</tr>
 			</c:forEach>
 		</tbody>

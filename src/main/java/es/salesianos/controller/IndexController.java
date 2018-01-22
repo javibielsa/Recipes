@@ -1,5 +1,8 @@
 package es.salesianos.controller;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -17,6 +20,9 @@ public class IndexController {
 
 	private static Logger log = LogManager.getLogger(IndexController.class);
 
+	private List<CookingTool> cookingTools = new ArrayList<CookingTool>();
+	private List<Ingredient> ingredients = new ArrayList<Ingredient>();
+	
 	@GetMapping("/")
 	public ModelAndView index() {
 		Recipe recipe = new Recipe();
@@ -25,32 +31,50 @@ public class IndexController {
 
 	@PostMapping("recipeInsert")
 	public ModelAndView recipeInsert(Recipe recipe) {
-		log.debug("recipeInsert");
+		log.debug("recipeInsert:" + recipe.toString());
 		return new ModelAndView("index", "command", recipe);
 	}
 
 	@PostMapping("ingredientInsert")
 	public ModelAndView ingredientInsert(Recipe recipe) {
-		log.debug("ingredientInsert");
+		log.debug("ingredientInsert:" + recipe.toString());
 
 		Ingredient ingredient = new Ingredient();
 		ingredient.setName(recipe.getIngredientName());
+		getIngredients().add(ingredient);
 
-		recipe.getIngredients().add(ingredient);
-
-		return new ModelAndView("index", "command", recipe);
+		ModelAndView modelAndView = new ModelAndView("index", "command", recipe);
+		modelAndView.addObject("ingredients", getIngredients());
+		return modelAndView;
 	}
 
 	@PostMapping("cookingToolInsert")
 	public ModelAndView cookingToolInsert(Recipe recipe) {
-		log.debug("cookingToolInsert");
+		log.debug("cookingToolInsert:" + recipe.toString());
 
 		CookingTool cookingTool = new CookingTool();
 		cookingTool.setName(recipe.getCookingToolName());
+		getCookingTools().add(cookingTool);
 
-		recipe.getTools().add(cookingTool);
+		ModelAndView modelAndView = new ModelAndView("index", "command", recipe);
+		modelAndView.addObject("cookingTools", getCookingTools());
+		return modelAndView;
+	}
 
-		return new ModelAndView("index", "command", recipe);
+	public List<CookingTool> getCookingTools() {
+		return cookingTools;
+	}
+
+	public void setCookingTools(List<CookingTool> cookingTools) {
+		this.cookingTools = cookingTools;
+	}
+
+	public List<Ingredient> getIngredients() {
+		return ingredients;
+	}
+
+	public void setIngredients(List<Ingredient> ingredients) {
+		this.ingredients = ingredients;
 	}
 
 }

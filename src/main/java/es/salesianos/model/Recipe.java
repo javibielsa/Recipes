@@ -58,4 +58,10 @@ public class Recipe {
 		this.cookingToolName = cookingToolName;
 	}
 
+	@Override
+	public String toString() {
+		return "Recipe [name=" + name + ", ingredientName=" + ingredientName + ", cookingToolName=" + cookingToolName
+				+ ", ingredients=" + ingredients + ", tools=" + tools + "]";
+	}
+
 }
