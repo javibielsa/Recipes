@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Welcome page</title>
+<title>Cooking types manager</title>
 <link
 	href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/cosmo/bootstrap.min.css"
 	rel="stylesheet">
@@ -17,6 +17,25 @@
 		<form:input type="text" path="name" />
 		<input type="submit"/>
 	</form:form>
+	<br/>
+	<br/>
+	<br/>
+	<br/>
+	
+	<table border="1">
+        <thead>
+            <tr>
+                <td>Listado de tipos de cocina</td>
+            </tr>
+        </thead>
+        <tbody>
+            <c:forEach var="cookingType" items="${cookingTypes}">
+                <tr>
+                    <td><c:out value="${cookingType.name}" /></td>
+                </tr>
+            </c:forEach>
+        </tbody>
+    </table>
 
 </body>
 </html>
